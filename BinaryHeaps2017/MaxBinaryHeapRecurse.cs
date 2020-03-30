@@ -79,6 +79,11 @@ namespace BinaryHeaps2017
             return del;
         }
 
+        public int Size()
+        {
+            return size;
+        }
+
         private void MaxHeapify(int i)
         {
             int l = left(i);
