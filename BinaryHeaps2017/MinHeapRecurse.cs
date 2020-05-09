@@ -6,24 +6,25 @@ using System.Threading.Tasks;
 
 namespace BinaryHeaps2017
 {
-    class MinHeapRecurse
+    class MinHeapRecurse<T> //where T : IComparable<T>
     {
-        int[] items;
+        T[] items;
         int capacity;
         int size;
+        IComparer<T> comparer;
 
-        public MinHeapRecurse(int cap)
+        public MinHeapRecurse(int cap, IComparer<T> comp)
         {
-            this.items = new int[cap];
+            this.items = new T[cap];
             this.capacity = cap;
             this.size = 0;
+            this.comparer = comp;
         }
 
-        public void Insert(int val)
+        public void Insert(T val)
         {
             if (capacity == size)
             {
-                Console.WriteLine("Cannot insert");
                 return;
             }
 
@@ -31,40 +32,40 @@ namespace BinaryHeaps2017
             int i = size - 1;
             items[i] = val;
 
-            while (i != 0 && items[parent(i)] > items[i])
+            while (i != 0 && greater(parent(i), i))
             {
                 swap(i, parent(i));
                 i = parent(i);
             }
         }
-
+        
         void deleteKey(int i)
         {
             if (size <= 0 || i > size - 1)
                 return;
 
-            DecreaseKey(i, int.MinValue);
+            DecreaseKey(i, default(T));
             DeleteMin();
         }
 
-        public void DecreaseKey(int i, int new_val)
+        public void DecreaseKey(int i, T new_val)
         {
             items[i] = new_val;
-            while (i != 0 && items[parent(i)] > items[i])
+            while (i != 0 && greater(parent(i), i))
             {
                 swap(i, parent(i));
                 i = parent(i);
             }
         }
 
-        public int Peek()
+        public T Peek()
         {
             return items[0];
         }
-        public int DeleteMin()
+        public T DeleteMin()
         {
             if (size <= 0)
-                return int.MinValue;
+                return default(T);
 
             if (size == 1)
             {
@@ -90,10 +91,10 @@ namespace BinaryHeaps2017
             int r = right(i);
             int smallest = i;
 
-            if (l < size && items[l] < items[smallest])
+            if (l < size && greater(smallest, l))
                 smallest = l;
 
-            if (r < size && items[r] < items[smallest])
+            if (r < size && greater(smallest, r))
                 smallest = r;
 
             if (smallest != i)
@@ -124,6 +125,11 @@ namespace BinaryHeaps2017
         {
             return 2 * i + 2;
         }
-
+        
+        private bool greater(int i, int j)
+        {
+            return comparer.Compare(items[i], items[j]) > 0;
+            //return items[i].CompareTo(items[j]) > 0;
+        }
     }
 }
