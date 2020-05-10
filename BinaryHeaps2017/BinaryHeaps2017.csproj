@@ -43,15 +43,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MaxBinaryHeap.cs" />
-    <Compile Include="MaxBinaryHeapRecurse.cs" />
-    <Compile Include="MinBinaryHeap.cs" />
-    <Compile Include="MinHeapRecurse.cs" />
+    <Compile Include="Comparator\Entities\NumToCount.cs" />
+    <Compile Include="Comparator\Entities\StringToCount.cs" />
+    <Compile Include="Comparator\IntComparer.cs" />
+    <Compile Include="Comparator\NumToCountComparer.cs" />
+    <Compile Include="Comparator\StringComparer.cs" />
+    <Compile Include="Iterative\MaxBinaryHeap.cs" />
+    <Compile Include="Problems\KthLargest.cs" />
+    <Compile Include="Problems\TopKFrequentNumbers.cs" />
+    <Compile Include="Problems\TopKFrequentWords.cs" />
+    <Compile Include="Recursive\MaxBinaryHeapRecurse.cs" />
+    <Compile Include="Iterative\MinBinaryHeap.cs" />
+    <Compile Include="Recursive\MinHeapRecurse.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
