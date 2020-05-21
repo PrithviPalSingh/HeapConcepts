@@ -6,24 +6,26 @@ using System.Threading.Tasks;
 
 namespace BinaryHeaps2017
 {
-    class MaxBinaryHeapRecurse
+    class MaxBinaryHeapRecurse<T>
     {
-        int[] items;
+        T[] items;
         int capacity;
         int size;
+        IComparer<T> comparer;
 
-        public MaxBinaryHeapRecurse(int cap)
+        public MaxBinaryHeapRecurse(int cap, IComparer<T> comp)
         {
-            this.items = new int[cap];
+            this.items = new T[cap];
             this.capacity = cap;
             this.size = 0;
+            this.comparer = comp;
         }
 
-        public void Insert(int val)
+        public void Insert(T val)
         {
             if (capacity == size)
             {
-                Console.WriteLine("Cannot insert");
+                //Console.WriteLine("Cannot insert");
                 return;
             }
 
@@ -31,7 +33,7 @@ namespace BinaryHeaps2017
             int i = size - 1;
             items[i] = val;
 
-            while (i != 0 && items[parent(i)] < items[i])
+            while (i != 0 && lesser(parent(i), i))
             {
                 swap(i, parent(i));
                 i = parent(i);
@@ -43,28 +45,28 @@ namespace BinaryHeaps2017
             if (size <= 0 || i > size - 1)
                 return;
 
-            DecreaseKey(i, int.MinValue);
+            DecreaseKey(i, default(T));
             DeleteMax();
         }
 
-        public void DecreaseKey(int i, int new_val)
+        public void DecreaseKey(int i, T new_val)
         {
             items[i] = new_val;
-            while (i != 0 && items[parent(i)] < items[i])
+            while (i != 0 && lesser(parent(i), i))
             {
                 swap(i, parent(i));
                 i = parent(i);
             }
         }
 
-        public int Peek()
+        public T Peek()
         {
             return items[0];
         }
-        public int DeleteMax()
+        public T DeleteMax()
         {
             if (size <= 0)
-                return int.MinValue;
+                return default(T);
 
             if (size == 1)
             {
@@ -90,10 +92,10 @@ namespace BinaryHeaps2017
             int r = right(i);
             int greatest = i;
 
-            if (l < size && items[l] > items[greatest])
+            if (l < size && lesser(greatest, l))
                 greatest = l;
 
-            if (r < size && items[r] > items[greatest])
+            if (r < size && lesser(greatest, r))
                 greatest = r;
 
             if (greatest != i)
@@ -123,6 +125,11 @@ namespace BinaryHeaps2017
         private int right(int i)
         {
             return 2 * i + 2;
+        }
+
+        private bool lesser(int i, int j)
+        {
+            return comparer.Compare(items[i], items[j]) < 0;
         }
     }
 }

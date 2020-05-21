@@ -15,9 +15,11 @@ namespace BinaryHeaps2017
         static void Main(string[] args)
         {
             // MaxHeapTesting();
-            KthLargest.kLargest();
+            /*KthLargest.kLargest();
             TopKFrequentWords.fnTopKFrequentWords();
-            TopKFrequentNumbers.fnTopKFrequentNumbers();
+            TopKFrequentNumbers.fnTopKFrequentNumbers();*/
+
+            TestRemoveKDigits();
 
             //TopKFrequent();
 
@@ -138,7 +140,15 @@ namespace BinaryHeaps2017
             //minHeap.Insert(50);
             //minHeap.Insert(49);
             //minHeap.Insert(1);
-        }              
+        }
+
+        private static void TestRemoveKDigits()
+        {
+            string s = "1432519";
+            int k = 3;
+
+            Console.WriteLine(RemoveKDigits.fnRemoveKdigits(s, k));
+        }
     }    
 
     

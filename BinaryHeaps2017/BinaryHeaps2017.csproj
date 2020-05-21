@@ -44,12 +44,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Comparator\Entities\NumToCount.cs" />
+    <Compile Include="Comparator\Entities\NumToList.cs" />
     <Compile Include="Comparator\Entities\StringToCount.cs" />
     <Compile Include="Comparator\IntComparer.cs" />
     <Compile Include="Comparator\NumToCountComparer.cs" />
+    <Compile Include="Comparator\NumToListComparer.cs" />
     <Compile Include="Comparator\StringComparer.cs" />
     <Compile Include="Iterative\MaxBinaryHeap.cs" />
     <Compile Include="Problems\KthLargest.cs" />
+    <Compile Include="Problems\RemoveKDigits.cs" />
     <Compile Include="Problems\TopKFrequentNumbers.cs" />
     <Compile Include="Problems\TopKFrequentWords.cs" />
     <Compile Include="Recursive\MaxBinaryHeapRecurse.cs" />
