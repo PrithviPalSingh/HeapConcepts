@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Comparator\CharToCountComparer.cs" />
+    <Compile Include="Comparator\Entities\CharToCount.cs" />
     <Compile Include="Comparator\Entities\NumToCount.cs" />
     <Compile Include="Comparator\Entities\NumToList.cs" />
     <Compile Include="Comparator\Entities\StringToCount.cs" />

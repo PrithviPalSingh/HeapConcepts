@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BinaryHeaps2017
 {
-    class MinHeapRecurse<T> //where T : IComparable<T>
+    class MinHeapRecurse<T>
     {
         T[] items;
         int capacity;
